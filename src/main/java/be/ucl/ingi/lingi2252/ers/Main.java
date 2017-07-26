@@ -85,11 +85,10 @@ public class Main {
 						new GPSCoordinates(60.0,8.0), 
 						new GPSCoordinates(60.0,9.0), 
 						new GPSCoordinates(60.0,10.0)));
-		//add disaster
+		
 		ers.addDisaster(earthquake);
 		ers.addDisaster(flood);	
-		//Alert
-		
+	
 		Timer timer = new Timer();
 		Alert alert = new Alert(ers, timer);
 		timer.scheduleAtFixedRate(alert, 1000, 30000);

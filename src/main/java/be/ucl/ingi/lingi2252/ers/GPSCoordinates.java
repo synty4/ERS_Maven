@@ -5,24 +5,47 @@ public class GPSCoordinates {
 	private Double longitude;
 	private Boolean affected;
 	
-	public GPSCoordinates(Double lat, Double lon){
-		latitude = lat;
-		longitude = lon; 
+	/**
+	 * @param latitude
+	 * @param longitude
+	 * **/
+	public GPSCoordinates(Double latitude, Double longitude){
+		this.latitude  = latitude;
+		this.longitude = longitude; 
 	}
 	
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
+	/**
+	 * set latitude to lati_tude
+	 * **/
+	public void setLatitude(Double lati_tude) {
+		this.latitude = lati_tude;
 	}
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
+	
+	/**
+	 * set longitude to longi_tude
+	 * **/
+	public void setLongitude(Double longi_tude) {
+		this.longitude = longi_tude;
 	}
+	
+	/**
+	 * return latitude
+	 * **/
 	public Double getLatitude() {
 		return latitude;
 	}
+	
+	/**
+	 * return longitude
+	 * **/
 	public Double getLongitude() {
 		return longitude;
 	}
-	
+	/**
+	 * Return  true if the GPS Coordinates g is equal 
+	 * to this object
+	 * 
+	 * **/
 	public Boolean isEqual(GPSCoordinates g) {
 		if(this.latitude == g.latitude && this.longitude == g.longitude) {
 			return true;
@@ -31,10 +54,28 @@ public class GPSCoordinates {
 			return false;
 		}	
 	}
-	public void setAffected(Boolean af) {
-		this.affected = af;
+	/**
+	 * set to affec_ted 
+	 * **/
+	public void setAffected(Boolean affec_ted) {
+		this.affected = affec_ted;
 	}
+	/**
+	 * Return  affected
+	 * 
+	 * **/
 	public  Boolean isAffected() {
 		return affected;
+	}
+	
+	/*public GPSCoordinates(Double latitude, Double longitude){
+		this.latitude  = latitude;
+		this.longitude = longitude; 
+	}*/
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "( latitude: " + latitude + " | " + "longitude: " + longitude + " )" ;
 	}
 }

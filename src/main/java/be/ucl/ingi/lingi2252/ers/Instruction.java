@@ -6,18 +6,34 @@ package be.ucl.ingi.lingi2252.ers;
 
 public class Instruction {
 	String details;
-	public Instruction(String d) {
-		details = d;
-	}
-	
-	public void setDetails(String details) {
+	/**
+	 * Constructor
+	 * @param details
+	 * **/
+	public Instruction(String details) {
 		this.details = details;
 	}
 	
+	/**
+	 * set details to det_ails
+	 * @param details
+	 */
+	public void setDetails(String det_ails) {
+		this.details = det_ails;
+	}
+	
+	/**
+	 * @return details
+	 * **/
 	public String getDetails() {
 		return details;
 	}
 	
-	
+
+	@Override
+	public String toString() {
+		
+		return "Instructions: "+ details;
+	}
 
 }

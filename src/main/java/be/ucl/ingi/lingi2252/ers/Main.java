@@ -2,8 +2,8 @@ package be.ucl.ingi.lingi2252.ers;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Timer;
 
-import be.ucl.ingi.lingi2252.ers.*;
 
 
 public class Main {
@@ -14,7 +14,7 @@ public class Main {
 		SafePlace spA = new SafePlace("Bruxelles sud", new GPSCoordinates(50.4167, 4.4333), PlaceType.Airoport);
 		SafePlace spB = new SafePlace("Hopital Saint Luc", new GPSCoordinates(50.8466, 4.3528), PlaceType.Hospital);
 		SafePlace spC = new SafePlace("Blocry", new GPSCoordinates(50.7057, 4.7484), PlaceType.Gym);
-	   //add safe place
+		//add safe place
 		ers.addSafePlace(spA);
 		ers.addSafePlace(spB);
 		ers.addSafePlace(spC);
@@ -39,48 +39,46 @@ public class Main {
 						new GPSCoordinates(60.0,10.0)));
 		//add disaster
 		ers.addDisaster(dA);
-		ers.addDisaster(dB);
-
+		ers.addDisaster(dB);	
+		//Alert
+		Timer timer = new Timer();
+		Alert alert = new Alert(ers, timer);
+		timer.scheduleAtFixedRate(alert, 1000, 30000);
 		//read command
 		Scanner opt = new Scanner(System.in);
-
 		String cmd = "";
-		String cmd2 = "";
 		while(!cmd.equals("0")){
 			System.out.println("Enter a command :"+"\n"
 					+ "1 : To start a disaster \n"
 					+ "2 : See situation\n" 
-					+ "3 : Check safe places\n"
-					+ "4 : Set your position \n" 
+					+ "3 : Check safe places\n" 
 					+ "5 : Find nearest safe place \n"
 					+ "6 : Check if this zone is dangerous \n" 
 					+ "7 : Display instructions\n"
-					+ "0 : Quit ");
+					+ "0 : Quit\n");
 
-			cmd=opt.nextLine();
-
+			cmd = opt.nextLine();
 			int choice = -1;
 			try {
 				choice=Integer.parseInt(cmd); 
-			} catch (Exception e){          
-			}
-
+			} catch (Exception e){}
+			
 			switch (choice){
 			case 0:
-				System.out.println("Stay safe !");
+				System.out.println("Stay safe !\n");
 				opt.close();
 				break;
 			case 1:
-				System.out.println("Start:\n-1:Flood\n-2:Earthquake");
-				cmd2=opt.nextLine();
-				int disaster=Integer.parseInt(cmd2);
+				System.out.println("Start:\n-1:Flood\n-2:Earthquake\n");
+				String activeDisaster = opt.nextLine();
+				int disaster=Integer.parseInt(activeDisaster);
 				if(disaster==1){
 					ers.addDisaster(dB);
-					System.out.println(dB.toString()+"h\n has been enclenched");
+					System.out.println(dB.toString()+"h\n has been enclenched\n");
 					break;}
 				else if (disaster==2){
 					ers.addDisaster(dA);
-					System.out.println(dA.toString() + "\n has been enclenched");
+					System.out.println(dA.toString() + "\n has been enclenched\n");
 					break;}
 			case 2:
 				System.out.println(ers);
@@ -91,18 +89,23 @@ public class Main {
 			case 4:
 				System.out.println("Insert position in this format: 55.02 5.02\n"); 
 				String inputPos = opt.nextLine(); 
-				String[] coords = inputPos.split(" "); //Assuming valid input...
+				String[] coords = inputPos.split(" "); 
 				GPSCoordinates newPos = new GPSCoordinates(Double.valueOf(coords[0]), Double.valueOf(coords[1]));
 				ers.getUser().setUserCurrentPossition(newPos);
+				if(ers.isInSafe(ers.getUser().getUserCurrentPosition()) == null){
+					synchronized(timer){
+			            timer.notify();
+			        }
+				}
 				break;
 			case 5:
 				System.out.println(ers.getClosestSafePlace());
 				break;
 			case 6:
-				if(ers.isInSafe(ers.getUser().getUserCurrentPosition())) {
-					System.out.println("You are safe");
+				if(ers.isInSafe(ers.getUser().getUserCurrentPosition()) == null) {
+					System.out.println("You are safe\n");
 				} else {
-					System.out.println("You're not safe here");
+					System.out.println("You're not safe here\n");
 				}
 				break;
 			case 7:

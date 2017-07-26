@@ -14,7 +14,7 @@ public class User {
 	}
 	public User(){
 		this.userName = "John Doe";
-		this.userPosition = new GPSCoordinates(0.0, 0.0);
+		this.userPosition = new GPSCoordinates(60.0,6.0);
 	}
 	
 	/**

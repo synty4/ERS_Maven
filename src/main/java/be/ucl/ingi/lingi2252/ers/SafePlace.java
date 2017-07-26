@@ -57,4 +57,15 @@ public class SafePlace {
 	public PlaceType getPlaceType(){
 		return placeType;
 	}
+	/* this.placeName = name;
+		this.placePosition = position;
+		this.placeType = type;
+		(non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+	
+		return "SafePlace Name: " + this.placeName + " | " + "Type: " + this.placeType + " | " + "Postion: " + this.placePosition ;  
+	}
 }

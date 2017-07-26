@@ -1,10 +1,7 @@
 package be.ucl.ingi.lingi2252.ers;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import be.ucl.ingi.lingi2252.utils.*;
-
 
 /**
  * This class represent the emergency response system 
@@ -12,10 +9,18 @@ import be.ucl.ingi.lingi2252.utils.*;
  *
  */
 public class ERS {
+	
 	private List<Disaster> disasters;
 	private List<SafePlace> safePlaces;
 	private List<Instruction> instructions;
 	private User user;
+	/**
+	 * Constructor
+	 * @param disasters
+	 * @param safePlaces
+	 * @param instructions
+	 * @param user
+	 * **/
 	
 	public ERS(List<Disaster> disasters, List<SafePlace> safePlaces, 
 			List<Instruction> instructions, User user) {
@@ -133,15 +138,14 @@ public class ERS {
 	 * @param position
 	 * @return true if he is in a safe area otherwise false
 	 */
-	public boolean isInSafe(GPSCoordinates position){
-		boolean safe = true;
+	public Disaster isInSafe(GPSCoordinates position){
+		//boolean safe = true;
 		for(Disaster disaster : disasters){
 			if(disaster.contains(user.getUserCurrentPosition())){
-				safe = false;
-				break;
+				return disaster;
 			}
 		}
-		return safe;
+		return null;
 	}
 	/**
 	 * get the user
@@ -151,7 +155,7 @@ public class ERS {
 		return user;
 	}
 	/**
-	 * this méthod display the path to the safe place
+	 * this mÃ©thod display the path to the safe place
 	 * @param safePlace
 	 */
 	public void displayPathToSafePlace(SafePlace safePlace){

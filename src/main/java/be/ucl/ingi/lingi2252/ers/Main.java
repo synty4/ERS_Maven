@@ -56,7 +56,6 @@ public class Main {
 					+ "6 : Check if this zone is dangerous \n" 
 					+ "7 : Display instructions\n"
 					+ "0 : Quit\n");
-
 			cmd = opt.nextLine();
 			int choice = -1;
 			try {

@@ -33,6 +33,6 @@ public class Instruction {
 	@Override
 	public String toString() {
 		
-		return "Instructions: "+ details;
+		return "Instructions: "+ "\n" + details;
 	}
 }

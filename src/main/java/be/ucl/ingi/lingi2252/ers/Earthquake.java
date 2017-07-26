@@ -79,6 +79,14 @@ public class Earthquake extends Disaster {
 	@Override
 	public String toString() {
 			
-		return "Earthquake" + this.getDisasterName() + "Occuring: "+ this.isActive() +"Epicenter: " + this.getEpicenter() + "Severity: " + this.getSeverity() + "Radius: "+ this.getRadius();   
+		String s = "-----------------------------------------------------------------------------"+
+				   "\n Earthquake:   " + this.getDisasterName() +
+				   "\n-----------------------------------------------------------------------------"+
+				   "\n Active:    " + this.isActive()        +
+				   "\n Epicenter: " + this.getEpicenter()    +
+				   "\n Severity:  " + this.getSeverity()     +
+				   "\n Radius:    " + this.getRadius()       +
+				   "\n----------------------------------------------------------------------------";
+		return s;
 	}
 }

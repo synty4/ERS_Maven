@@ -41,6 +41,7 @@ public class GPSCoordinates {
 	public Double getLongitude() {
 		return longitude;
 	}
+	
 	/**
 	 * Return  true if the GPS Coordinates g is equal 
 	 * to this object
@@ -54,12 +55,14 @@ public class GPSCoordinates {
 			return false;
 		}	
 	}
+	
 	/**
 	 * set to affec_ted 
 	 * **/
 	public void setAffected(Boolean affec_ted) {
 		this.affected = affec_ted;
 	}
+	
 	/**
 	 * Return  affected
 	 * 
@@ -68,14 +71,9 @@ public class GPSCoordinates {
 		return affected;
 	}
 	
-	/*public GPSCoordinates(Double latitude, Double longitude){
-		this.latitude  = latitude;
-		this.longitude = longitude; 
-	}*/
-	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
+	
 		return "( latitude: " + latitude + " | " + "longitude: " + longitude + " )" ;
 	}
 }

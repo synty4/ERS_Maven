@@ -36,7 +36,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>be.ucl.ingi.lingi2252.ers.Main</mainClass>
+							<mainClass>be.ucl.ingi.lingi2252.app.ERSMain</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

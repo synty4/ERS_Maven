@@ -1,7 +1,7 @@
 package be.ucl.ingi.lingi2252.ers;
 /*
- * This class implements a non specific Instruction
- * such as Call  an Emergency number
+ * This class implements a generic instruction
+ * valuable in any situation
  */
 
 public class Instruction {
@@ -22,6 +22,7 @@ public class Instruction {
 		this.details = det_ails;
 	}
 	
+	
 	/**
 	 * @return details
 	 * **/
@@ -29,11 +30,9 @@ public class Instruction {
 		return details;
 	}
 	
-
 	@Override
 	public String toString() {
 		
 		return "Instructions: "+ details;
 	}
-
 }

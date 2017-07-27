@@ -77,9 +77,9 @@ public abstract class Disaster {
 	/**
 	 * this method check if the current positon is in a safe area or not
 	 * @param position
-	 * @return true if in an affected or dangerous area otherwise false
+	 * @return true if in an affected if in affected area
 	 */
-	public abstract boolean contains(GPSCoordinates pos);
+	public abstract boolean contains_affectedArea(GPSCoordinates pos);
 	
 	
 }

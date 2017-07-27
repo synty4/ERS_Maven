@@ -142,7 +142,7 @@ public class ERS {
 	public Disaster isInSafe(GPSCoordinates position){
 		//boolean safe = true;
 		for(Disaster disaster : disasters){
-			if(disaster.contains(user.getUserCurrentPosition())){
+			if(disaster.contains_affectedArea(user.getUserCurrentPosition())){
 				return disaster;
 			}
 		}

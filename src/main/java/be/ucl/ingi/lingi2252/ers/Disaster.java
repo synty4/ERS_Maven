@@ -11,7 +11,7 @@ public abstract class Disaster {
 	
 	private String disasterName;
 	private Boolean active;
-	List<GPSCoordinates> affectdArea;
+	private List<GPSCoordinates> affectdArea;
 	
 	/**
 	 * Constructor

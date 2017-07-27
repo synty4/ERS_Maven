@@ -1,6 +1,6 @@
 package be.ucl.ingi.lingi2252.utils;
 
-import be.ucl.ingi.lingi2252.ers.GPSCoordinates;
+import be.ucl.ingi.lingi2252.ers.*;
 
 /**
  * class that provides approximate distance between

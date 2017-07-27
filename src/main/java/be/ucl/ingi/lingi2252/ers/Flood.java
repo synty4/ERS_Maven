@@ -3,8 +3,7 @@ import java.util.List;
 
 public class Flood extends Disaster {
 	
-	private List<GPSCoordinates> dangerousArea;
-	private List <GPSCoordinates> affectedArea;	
+	private List<GPSCoordinates> dangerousArea;	
 	
 	/**
 	 * Constructor 
@@ -18,7 +17,7 @@ public class Flood extends Disaster {
 				  List <GPSCoordinates> affectedArea, 
 				  List<GPSCoordinates> dangerousArea ){	
 		super(disasterName, active);
-		this.affectedArea = affectedArea;
+		super.setAffectdArea(affectedArea);
 		this.dangerousArea = dangerousArea;  
 	}
 	
@@ -41,7 +40,7 @@ public class Flood extends Disaster {
 	
 	
 	public void displayAffectedFloodAreas() {
-		
+		List<GPSCoordinates> affectedArea = super.getAffectdArea();
 		for(int i=0; i < affectedArea.size(); i++) {
 			//displayonMap
 		}
@@ -60,6 +59,7 @@ public class Flood extends Disaster {
         int i;
         int j;
         boolean result = false;
+        List<GPSCoordinates> affectedArea = super.getAffectdArea();
         for (i = 0, j = affectedArea.size() - 1; i < affectedArea.size(); j = i++) {
             if ((affectedArea.get(i).getLongitude() > pos.getLongitude()) != (affectedArea.get(j).getLongitude() > pos.getLongitude())
                     && (pos.getLatitude() < (affectedArea.get(j).getLatitude() - affectedArea.get(i).getLatitude()) * (pos.getLongitude() - affectedArea.get(i).getLongitude())
@@ -72,13 +72,8 @@ public class Flood extends Disaster {
     
     @Override
 	public String toString() {
-    	String s = 
-    			   "\n Name:            " + this.getDisasterName()  +
-				   "\n Active:          " + this.isActive()         +
-				   "\n Affected  Areas: " + this.getAffectdArea()   +
-				   "\n Dangerous Areas: " + this.getDangerousArea() ;
-				   
-		return s;
+			
+		return "[Flood: " + this.getDisasterName() + ", Active: "+ this.isActive() + ", List of Affected Areas: "+ this.getAffectdArea() + ", List of dangerousArea: " + this.getDangerousArea() + "]";   
 	}
 
 }

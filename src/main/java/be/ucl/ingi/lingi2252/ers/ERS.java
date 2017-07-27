@@ -1,4 +1,5 @@
 package be.ucl.ingi.lingi2252.ers;
+
 import java.util.ArrayList;
 import java.util.List;
 import be.ucl.ingi.lingi2252.utils.*;
@@ -9,18 +10,10 @@ import be.ucl.ingi.lingi2252.utils.*;
  *
  */
 public class ERS {
-	
 	private List<Disaster> disasters;
 	private List<SafePlace> safePlaces;
 	private List<Instruction> instructions;
 	private User user;
-	/**
-	 * Constructor
-	 * @param disasters
-	 * @param safePlaces
-	 * @param instructions
-	 * @param user
-	 * **/
 	
 	public ERS(List<Disaster> disasters, List<SafePlace> safePlaces, 
 			List<Instruction> instructions, User user) {
@@ -77,10 +70,11 @@ public class ERS {
 		double distance = Location.distance(userCurrentLat, userCurrentLong, destLat, destLong);
 		
 		for(SafePlace safePlace : safePlaces){
-			destLat = safePlaces.get(0).getPlacePosition().getLatitude();
-			destLong = safePlaces.get(0).getPlacePosition().getLongitude();
-			if(Location.distance(userCurrentLat, userCurrentLong, destLat, destLong) < distance){
-				distance = Location.distance(userCurrentLat, userCurrentLong, destLat, destLong);
+			destLat = safePlace.getPlacePosition().getLatitude();
+			destLong = safePlace.getPlacePosition().getLongitude();
+			double distance2 = Location.distance(userCurrentLat, userCurrentLong, destLat, destLong);
+			if(distance2 < distance){
+				distance = distance2;
 				closest = safePlace;
 			}
 		}
@@ -102,13 +96,20 @@ public class ERS {
 		instructions.remove(instruction);
 	}
 	/**
+	 * get all instruction
+	 * @return instruction
+	 */
+	public List<Instruction> getInstructions(){
+		return instructions;
+	}
+	/**
 	 * display all the instructions
 	 * @return s
 	 */
 	public String displayInstructions(){
-		String s = "Instruction to follow : ";
+		String s = "Instructions:\n";
 		for(Instruction instruction : instructions){
-			s += instruction.toString()+" "; 
+			s += "- " + instruction.toString() + "\n"; 
 		}
 		return s;
 	}
@@ -155,7 +156,7 @@ public class ERS {
 		return user;
 	}
 	/**
-	 * this mÃ©thod display the path to the safe place
+	 * this méthod display the path to the safe place
 	 * @param safePlace
 	 */
 	public void displayPathToSafePlace(SafePlace safePlace){
@@ -184,22 +185,23 @@ public class ERS {
 	
 	@Override
     public String toString() {
-        String s = "ERS (Current disasters: " + getActiveDisastersCount() + ", Position: " + user.getUserCurrentPosition()  + ")\n{Disasters:[";
+        String s = "Current active disaster(s):\n- " + getActiveDisastersCount() 
+        			+ "\nUser Position:\n- " + user.getUserCurrentPosition() 
+        			+ "\nDisasters:\n";
         for (Disaster disaster  : disasters) {
-            s += disaster.toString()+", ";
+            s += "- " + disaster.toString() + "\n";
         }
         s = s.replaceAll(", $", "");
-        s+= "],\n SafePlaces:[";
+        s+= "SafePlaces:\n";
         for (SafePlace safePlace : safePlaces) {
-            s += safePlace.toString()+", ";
+            s += "- " + safePlace.toString()+"\n";
         }
         s = s.replaceAll(", $", "");
-        s+= "],\n Instructions:[";
+        s+= "Instructions:\n";
         for (Instruction instruction : instructions) {
-            s += instruction.toString()+", ";
+            s += "- " + instruction.toString()+"\n";
         }  
         s = s.replaceAll(", $", "");
-        s += "]}";
         return s;
     }
 

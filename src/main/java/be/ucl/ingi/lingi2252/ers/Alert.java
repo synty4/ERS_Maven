@@ -8,7 +8,6 @@ import java.util.TimerTask;
  *
  */
 public class Alert extends TimerTask{
-	
 	private Timer timer;
 	private ERS ers;
 
@@ -50,12 +49,4 @@ public class Alert extends TimerTask{
 	public Timer getTimer(){
 		return timer;
 	}
-	
-
-	@Override
-	public String toString() {
-		
-		return "Alert:  [ ERS: " + this.ers + ", " + "Timer: "+ this.timer + " ]";
-	}
-	
 }

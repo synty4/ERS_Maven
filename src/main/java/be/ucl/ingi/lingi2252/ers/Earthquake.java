@@ -1,5 +1,4 @@
 package be.ucl.ingi.lingi2252.ers;
-
 public class Earthquake extends Disaster {
 	private GPSCoordinates epicenter;
 	private double severity;
@@ -79,12 +78,7 @@ public class Earthquake extends Disaster {
 	
 	@Override
 	public String toString() {
-		String s = "\n Name:      " + this.getDisasterName()  +
-				   "\n Active:    " + this.isActive()         +
-				   "\n Epicenter: " + this.getEpicenter()     +
-				   "\n Severity:  " + this.getSeverity()      +
-				   "\n Radius:    " + this.getRadius()        ;
-				   
-		return s;
+			
+		return "[Earthquake: " + this.getDisasterName() + ", Occuring: "+ this.isActive() +", Epicenter: " + this.getEpicenter() + ", Severity: " + this.getSeverity() + ", Radius: "+ this.getRadius() + "]";   
 	}
 }

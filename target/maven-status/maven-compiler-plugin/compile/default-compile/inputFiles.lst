@@ -1,13 +1,13 @@
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\Main.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\SpecificInstruction.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\SafePlace.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\Instruction.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\PlaceType.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\utils\Location.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\Disaster.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\GPSCoordinates.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\Alert.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\Flood.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\User.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\Earthquake.java
-C:\Users\User\git\ERS_Maven\src\main\java\be\ucl\ingi\lingi2252\ers\ERS.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/Alert.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/SpecificInstruction.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/SafePlace.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/app/Main.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/Flood.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/Instruction.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/Earthquake.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/User.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/utils/Location.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/Disaster.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/PlaceType.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/ERS.java
+/Users/admin/Google-Drive/SINF21MS-2016-2017/Septembre/This year/LINGI2252-Software maintenance and evolution/Git/ERS_Maven/src/main/java/be/ucl/ingi/lingi2252/ers/GPSCoordinates.java

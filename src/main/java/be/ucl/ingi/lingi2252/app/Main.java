@@ -1,9 +1,20 @@
-package be.ucl.ingi.lingi2252.ers;
+package be.ucl.ingi.lingi2252.app;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Timer;
+
+import be.ucl.ingi.lingi2252.ers.Alert;
+import be.ucl.ingi.lingi2252.ers.Disaster;
+import be.ucl.ingi.lingi2252.ers.ERS;
+import be.ucl.ingi.lingi2252.ers.Earthquake;
+import be.ucl.ingi.lingi2252.ers.Flood;
+import be.ucl.ingi.lingi2252.ers.GPSCoordinates;
+import be.ucl.ingi.lingi2252.ers.Instruction;
+import be.ucl.ingi.lingi2252.ers.PlaceType;
+import be.ucl.ingi.lingi2252.ers.SafePlace;
+import be.ucl.ingi.lingi2252.ers.SpecificInstruction;
 
 
 

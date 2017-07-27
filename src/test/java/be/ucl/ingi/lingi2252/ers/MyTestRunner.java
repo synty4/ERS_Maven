@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package be.ucl.ingi.lingi2252.ers;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class MyTestRunner {
+  public static void main(String[] args) {
+    Result result = JUnitCore.runClasses(DisasterTest.class);
+    for (Failure failure : result.getFailures()) {
+      System.out.println(failure.toString());
+    }
+  }
+}

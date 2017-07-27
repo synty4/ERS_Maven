@@ -57,22 +57,6 @@ public class Flood extends Disaster {
 	}	
 	
 	
-/*
-    public boolean contains(GPSCoordinates position, ListGPSCoordinates list ) {
-        int i;
-        int j;
-        boolean result = false;
-        List<GPSCoordinates> affectedArea = super.getAffectdArea();
-        for (i = 0, j = affectedArea.size() - 1; i < affectedArea.size(); j = i++) {
-            if ((affectedArea.get(i).getLongitude() > position.getLongitude()) != (affectedArea.get(j).getLongitude() > position.getLongitude())
-                    && (position.getLatitude() < (affectedArea.get(j).getLatitude() - affectedArea.get(i).getLatitude()) * (position.getLongitude() - affectedArea.get(i).getLongitude())
-                    / (affectedArea.get(j).getLongitude() - affectedArea.get(i).getLongitude()) + list.get(i).getLatitude())) {
-                result = !result;
-            }
-        }
-        return result;
-    }
-*/	
 	/**
 	 * Check if the current position is in an affected area or not
 	 * @param position

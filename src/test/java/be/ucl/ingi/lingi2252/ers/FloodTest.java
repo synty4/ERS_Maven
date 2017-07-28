@@ -61,7 +61,7 @@ public class FloodTest {
 		flood.addDangerousArea(dangerousArea1);
 		assertTrue ("pos (10.0, 10.0) is in unsafe flood zones",      flood.contains(new GPSCoordinates(10.0, 10.0)));
 		assertFalse("pos (100.0, 40.0) is not in unsafe flood zones", flood.contains(new GPSCoordinates(100.0, 40.0)));
-		//assertFalse("pos (-10.0, 30.0) is not in unsafe flood zones", flood.contains(new GPSCoordinates(-10.0, 30.0)));
+		assertFalse("pos (-10.0, 30.0) is not in unsafe flood zones", flood.contains(new GPSCoordinates(-10.0, 30.0)));
 		
 	}
 	

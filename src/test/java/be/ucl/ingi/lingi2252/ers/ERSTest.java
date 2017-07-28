@@ -18,11 +18,12 @@ public class ERSTest {
 			new GPSCoordinates(60.0,8.0), 
 			new GPSCoordinates(60.0,9.0), 
 			new GPSCoordinates(60.0,10.0)), AreaType.Dangerous);
-	Disaster dA = new Earthquake("Cathrina", true, new GPSCoordinates(50.6412, 5.5718), 4.0, 2.0);
-	Disaster dB = new Flood("Tsunami", true, Arrays.asList(affectedArea), Arrays.asList(dangerousArea));
-	SafePlace spA = new SafePlace("Hopital Saint Luc", new GPSCoordinates(50.4541, 3.9523), PlaceType.Hospital); //mons
-	SafePlace spB = new SafePlace("Blocry", new GPSCoordinates(50.7057, 4.7484), PlaceType.Gym);//ottignie
-	Instruction iA = new SpecificInstruction("Call your mom");
+	
+	Disaster dA 	= new Earthquake("Cathrina", true, new GPSCoordinates(50.6412, 5.5718), 4.0, 2.0);
+	Disaster dB 	= new Flood("Tsunami", true, Arrays.asList(affectedArea), Arrays.asList(dangerousArea));
+	SafePlace spA 	= new SafePlace("Hopital Saint Luc", new GPSCoordinates(50.4541, 3.9523), PlaceType.Hospital); //mons
+	SafePlace spB 	= new SafePlace("Blocry", new GPSCoordinates(50.7057, 4.7484), PlaceType.Gym);//ottignie
+	Instruction iA 	= new SpecificInstruction("Call your mom");
 
 	@Test
 	public void add_remove_SafePlaceTest(){	
@@ -48,7 +49,7 @@ public class ERSTest {
 
 	@Test
 	public void add_remove_InstructionTest(){
-		ERS ers=new ERS();
+		ERS ers = new ERS();
 		ers.addInstruction(iA);
 		assertEquals(1, ers.getInstructions().size());
 		ers.removeInstruction(iA);
@@ -57,7 +58,8 @@ public class ERSTest {
 
 	@Test 
 	public void displayInstructionTest(){
-		//TODO
+		
+		assertTrue("Instruction must be Call your mom", iA.getDetails().equals("Call your mom"));
 	}
 
 	@Test
@@ -65,7 +67,8 @@ public class ERSTest {
 		ERS ers=new ERS();
 		assertEquals(0,ers.getActiveDisastersCount());
 		ers.addDisaster(dA);
-		assertEquals(1,ers.getActiveDisastersCount());
+		ers.addDisaster(dB);
+		assertEquals(2,ers.getActiveDisastersCount());
 	}
 
 	@Test

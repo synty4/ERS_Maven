@@ -31,13 +31,13 @@ public class Instruction {
 	 */
 	
 	public String getDetails() {
-		return details;
+		return this.details;
 	}
 	
 	@Override
 	public String toString() {
 		
-		String s =  details;
+		String s =  this.details;
 		return s;
 	}
 

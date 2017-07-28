@@ -82,7 +82,13 @@ public class Flood extends Disaster {
     
     @Override
 	public String toString() {	
-		String s = "[Flood: " + this.getDisasterName() + ", Active: "+ this.isActive() + ", List of Affected Areas: "+ this.getAffectdAreaList() + ", List of dangerousArea: [";
+		String s = "[Flood: " + this.getDisasterName() + ", Active: "+ this.isActive() + ", List of Affected Areas: [";
+		for (Area area : this.getAffectdAreaList()) {
+			s += area.getConvexArea();
+		}
+		
+		s += "], List of dangerousArea: [";
+		
 		for (Area area : dangerousAreaList) {
 			s += area.getConvexArea();
 		}

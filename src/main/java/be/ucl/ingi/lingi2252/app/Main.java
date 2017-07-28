@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java.util.Timer;
 
 import be.ucl.ingi.lingi2252.ers.Alert;
+import be.ucl.ingi.lingi2252.ers.Area;
+import be.ucl.ingi.lingi2252.ers.AreaType;
 import be.ucl.ingi.lingi2252.ers.Disaster;
 import be.ucl.ingi.lingi2252.ers.ERS;
 import be.ucl.ingi.lingi2252.ers.Earthquake;
@@ -39,16 +41,18 @@ public class Main {
 		ers.addInstruction(iB);
 		ers.addInstruction(iC);
 		//disaster
-		Disaster dA = new Earthquake("Cathrina", true, new GPSCoordinates(50.6412, 5.5718), 4.0, 2.0);
-		Disaster dB = new Flood("Tsunami", true, 
-				Arrays.asList(new GPSCoordinates(60.0,6.0), 
+		Area affectedArea = new Area(Arrays.asList(new GPSCoordinates(60.0,6.0), 
 						new GPSCoordinates(66.0,6.0), 
 						new GPSCoordinates(60.0,12.0), 
-						new GPSCoordinates(66.0,12.0)),
-				Arrays.asList(new GPSCoordinates(60.0,7.0), 
+						new GPSCoordinates(66.0,12.0)), AreaType.Affected);
+		Area dangerousArea = new Area(Arrays.asList(new GPSCoordinates(60.0,7.0), 
 						new GPSCoordinates(60.0,8.0), 
 						new GPSCoordinates(60.0,9.0), 
-						new GPSCoordinates(60.0,10.0)));
+						new GPSCoordinates(60.0,10.0)), AreaType.Dangerous);
+		List<Area>affectedAreaList = Arrays.asList(affectedArea);
+		List<Area>dangerousAreaList = Arrays.asList(dangerousArea);
+		Disaster dA = new Earthquake("Cathrina", true, new GPSCoordinates(50.6412, 5.5718), 4.0, 2.0);
+		Disaster dB = new Flood("Tsunami", true, affectedAreaList, dangerousAreaList);
 		//add disaster
 		ers.addDisaster(dA);
 		ers.addDisaster(dB);	

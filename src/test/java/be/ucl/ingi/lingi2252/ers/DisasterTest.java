@@ -4,7 +4,11 @@
 package be.ucl.ingi.lingi2252.ers;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 /**
@@ -37,12 +41,17 @@ public class DisasterTest {
 	GPSCoordinates nextUCL1 = new GPSCoordinates(51.2149331, 3.95192671);
 	GPSCoordinates nextUCL2 = new GPSCoordinates(50.73462606, 4.79128389);
 	//disaster
+	Area affectedArea = new Area(Arrays.asList(A1, B1, C1, D1, E1, F1), AreaType.Affected);
+	Area dangerousArea = new Area(Arrays.asList(A1, B1, C1, D1, E1, F1), AreaType.Dangerous);
+	List<Area> affectedAreaList = new ArrayList<Area>();
+	List<Area> dangerousAreaList = new ArrayList<Area>();
 	Disaster floodNull = new Flood("void", false,null, null);
-	Disaster flood = new Flood("Haute Loire flood", true, Arrays.asList(A1, B1, C1, D1, E1, F1), Arrays.asList(A2, B2, C2, D2, E2, F2));
+
 	Disaster earthquake = new Earthquake("UCL earthquake", true, UCL, 10, 100);
-	
+
 	@Test
 	public void disaster_isAcitveTest(){
+		Flood flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList);
 		assertTrue("flood should be active",flood.isActive());
 		flood.setActive(false);
 		assertFalse("flood should not be active", flood.isActive());
@@ -51,29 +60,43 @@ public class DisasterTest {
 	}
 
 	@Test
-	public void disaster_getAffectdAreaTest() {
-		assertEquals("Flood affectedArea should be [(40.0, 10.0), (10.0, 40.0), (10.0, 60.0), (30.0, 70.0), (40.0, 50.0), (60.0, 30.0) ]",
-				flood.getAffectdArea(), Arrays.asList(A1, B1, C1, D1, E1, F1));
+	public void disaster_getAffectdAreaListTest() {
+		Flood flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList);
+		assertEquals(flood.getAffectdAreaList(), Arrays.asList());
+		//add an affected area
+		flood.addAffectedArea(affectedArea);
+		assertEquals(flood.getAffectdAreaList(), Arrays.asList(affectedArea));
 	}
 
 
 	@Test
-	public void disaster_setAffectedArea(){
-		assertEquals("Flood affectedArea should be [(40.0, 10.0), (10.0, 40.0), (10.0, 60.0), (30.0, 70.0), (40.0, 50.0), (60.0, 30.0) ]",
-				flood.getAffectdArea(), Arrays.asList(A1, B1, C1, D1, E1, F1));
-		flood.setAffectdArea(Arrays.asList(A2, B2, C2, D2, E2, F2));
-		assertEquals("Flood affectedArea should be [(40.0,-10.0), (0.0, 30.0), (0.0, 60.0), (30.0, 100.0), (70.0, 90.0), (90.0, 40.0) ]",
-				flood.getAffectdArea(), Arrays.asList(A2, B2, C2, D2, E2, F2));
-		flood.setAffectdArea(Arrays.asList(A1, B1, C1, D1, E1, F1));
-		assertEquals("Flood affectedArea should be [(40.0, 10.0), (10.0, 40.0), (10.0, 60.0), (30.0, 70.0), (40.0, 50.0), (60.0, 30.0) ]",
-				flood.getAffectdArea(), Arrays.asList(A1, B1, C1, D1, E1, F1));
+	public void add_removeAffectedAreaTest(){
+		Disaster flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList);
+		//add an affected area
+		flood.addAffectedArea(affectedArea);
+		assertEquals(1, flood.getAffectdAreaList().size());
+		//remove an affected area
+		flood.removeAffectedArea(affectedArea);
+		assertEquals(0, flood.getAffectdAreaList().size());
+	}
+
+	@Test
+	public void add_removeDangerousAreaTest(){
+		Flood flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList);
+		//add an dangerous area
+		flood.addDangerousArea(dangerousArea);
+		assertEquals(1, flood.getDangerousAreaList().size());
+		//remove an affected area
+		flood.removeDangerousArea(dangerousArea);
+		assertEquals(0, flood.getDangerousAreaList().size());
 	}
 
 	@Test
 	public void disater_containsTest() {
-		//x
-		assertTrue("pos (30.0, 30.0) should be in the affected flooded zone", flood.contains(new GPSCoordinates(30.0, 30.0)));
-		//Y
+		Flood flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList);
+		
+		assertFalse("pos (30.0, 30.0) should be not the affected flooded zone", flood.contains(new GPSCoordinates(30.0, 30.0)));
+		/*
 		assertTrue("pos (50.0, 30.0) should be in the affected flooded zone", flood.contains(new GPSCoordinates(50.0, 30.0)));
 		//Z
 		assertTrue("pos (20.0, 60.0) should be in the affected flooded zone", flood.contains(new GPSCoordinates(20.0, 60.0)));
@@ -84,7 +107,7 @@ public class DisasterTest {
 		assertFalse("pos (10.0, 10.0) should not be in the affected flooded zone", flood.contains(new GPSCoordinates(10.0, 10.0)));
 		//assertTrue("pos (51.2149331, 3.95192671) should be in the affected earthquake zone", earthquake.contains_affectedArea(new GPSCoordinates(51.2149331, 3.95192671)));
 		//assertTrue("pos (50.73462606, 50.73462606) should be in the affected earthquake zone", earthquake.contains_affectedArea(new GPSCoordinates(50.73462606, 50.73462606)));
-
+		*/
 	}
 
 

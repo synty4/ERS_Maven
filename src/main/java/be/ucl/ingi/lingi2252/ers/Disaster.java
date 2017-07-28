@@ -11,7 +11,7 @@ public abstract class Disaster {
 	
 	private String disasterName;
 	private Boolean active;
-	private List<GPSCoordinates> affectdArea;
+	private List<Area> affectdAreaList;
 	
 	/**
 	 * Constructor
@@ -61,33 +61,35 @@ public abstract class Disaster {
 	/**
 	 * get affected area list
 	 * */
-	public List<GPSCoordinates> getAffectdArea() {
-		return affectdArea;
+	public List<Area> getAffectdAreaList() {
+		return affectdAreaList;
 	}
 	/**
-	 * set affectedArea to affected_area
-	 * @param affectdArea
+	 * set affected area list
+	 * @param area
 	 */
-	
-	public void setAffectdArea(List<GPSCoordinates> affected_area) {
-		this.affectdArea = affected_area;
+	public void setAffectedAreaList(List<Area> area){
+		affectdAreaList = area;
 	}
 	
-	public void addAffectedArea(GPSCoordinates x) {
-		this.getAffectdArea().add(x);
+	/**
+	 * add an affected area
+	 * @param area
+	 */
+	public void addAffectedArea(Area area) {
+		this.getAffectdAreaList().add(area);
 	}
-	
-	public void removeAffectedArea(GPSCoordinates x) {
-		this.getAffectdArea().remove(x);
+	/**
+	 * remove an affected area
+	 * @param area
+	 */
+	public void removeAffectedArea(Area area) {
+		this.getAffectdAreaList().remove(area);
 	}
-	
-	
 	/**
 	 * this method check if the current positon is in a safe area or not
 	 * @param position
 	 * @return true if in an affected if in affected area
 	 */
 	public abstract boolean contains(GPSCoordinates pos);
-	
-	
 }

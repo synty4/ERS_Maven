@@ -73,13 +73,21 @@ public abstract class Disaster {
 		this.affectdArea = affected_area;
 	}
 	
+	public void addAffectedArea(GPSCoordinates x) {
+		this.getAffectdArea().add(x);
+	}
+	
+	public void removeAffectedArea(GPSCoordinates x) {
+		this.getAffectdArea().remove(x);
+	}
+	
 	
 	/**
 	 * this method check if the current positon is in a safe area or not
 	 * @param position
 	 * @return true if in an affected if in affected area
 	 */
-	public abstract boolean contains_affectedArea(GPSCoordinates pos);
+	public abstract boolean contains(GPSCoordinates pos);
 	
 	
 }

@@ -65,7 +65,7 @@ public class Earthquake extends Disaster {
 	*/
 
    @Override
-   public boolean contains_affectedArea(GPSCoordinates position) {
+   public boolean contains(GPSCoordinates position) {
        Double dist = 6371 * Math.acos(
                Math.cos(Math.toRadians(position.getLatitude()))
                * Math.cos(Math.toRadians(epicenter.getLatitude()))

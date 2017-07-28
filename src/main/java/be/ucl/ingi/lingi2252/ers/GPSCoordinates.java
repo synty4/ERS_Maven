@@ -5,32 +5,58 @@ public class GPSCoordinates {
 	private Double longitude;
 	private Boolean affected;
 	
-	public GPSCoordinates(Double lat, Double lon){
-		latitude = lat;
-		longitude = lon; 
+
+	/**
+	 * Constructor
+	 * @param latitude
+	 * @param longitude
+	 * 
+	 * **/
+	public GPSCoordinates(Double latitude, Double longitude){
+		this.latitude  = latitude;
+		this.longitude = longitude; 
 	}
 	
+	/**
+	 * set GPSCoordinates latitude
+	 * @param  latitude
+	 */
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
+	
+	/**
+	 * set GPSCoordinates longitude
+	 * @param  longitude
+	 */
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
+	
+	/**
+	 * set GPSCoordinates latitude
+	 * @param  latitude
+	 */
 	public Double getLatitude() {
-		return latitude;
-	}
-	public Double getLongitude() {
-		return longitude;
+		return this.latitude;
 	}
 	
-	public Boolean isEqual(GPSCoordinates g) {
-		if(this.latitude == g.latitude && this.longitude == g.longitude) {
-			return true;
-		}
-		else {
-			return false;
-		}	
+	/**
+	 * get GPSCoordinates longitude
+	 * @return  longitude
+	 */
+	public Double getLongitude() {
+		return this.longitude;
 	}
+	
+	/**
+	 * Check if GPSCoordinates g is equal to this object
+	 * **/
+	public Boolean isEqual(GPSCoordinates g) {
+		return(( Double.compare(this.latitude, g.latitude)== 0 )
+				&&  (Double.compare(this.longitude, g.longitude) == 0));	
+	}
+	
 	public void setAffected(Boolean af) {
 		this.affected = af;
 	}
@@ -41,6 +67,6 @@ public class GPSCoordinates {
 	@Override
 	public String toString() {
 	
-		return "(" + latitude + " , " + longitude + ")" ;
+		return "(" + this.latitude + " , " + this.longitude + ")" ;
 	}
 }

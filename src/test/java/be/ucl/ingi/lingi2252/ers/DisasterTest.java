@@ -17,21 +17,7 @@ import org.junit.Test;
  */
 public class DisasterTest {
 
-	//affected zones polygon vertices
-	GPSCoordinates A1 = new GPSCoordinates(40.0, 10.0);
-	GPSCoordinates B1 = new GPSCoordinates(10.0, 40.0);
-	GPSCoordinates C1 = new GPSCoordinates(10.0, 60.0);
-	GPSCoordinates D1 = new GPSCoordinates(30.0, 70.0);
-	GPSCoordinates E1 = new GPSCoordinates(40.0, 50.0);
-	GPSCoordinates F1 = new GPSCoordinates(60.0, 30.0);
-	//dangerous zones polygon vertices
-	GPSCoordinates A2 = new GPSCoordinates(40.0,-10.0);
-	GPSCoordinates B2 = new GPSCoordinates(0.0, 30.0);
-	GPSCoordinates C2 = new GPSCoordinates(0.0, 60.0);
-	GPSCoordinates D2 = new GPSCoordinates(30.0, 100.0);
-	GPSCoordinates E2 = new GPSCoordinates(70.0, 90.0);
-	GPSCoordinates F2 = new GPSCoordinates(90.0, 40.0);
-
+	
 	/*
 	 * GPS coordinates generated randomly with UCL as the center and a radius of 100 km
 	 * with Random point online generator tool 
@@ -41,9 +27,12 @@ public class DisasterTest {
 	GPSCoordinates nextUCL1 = new GPSCoordinates(51.2149331, 3.95192671);
 	GPSCoordinates nextUCL2 = new GPSCoordinates(50.73462606, 4.79128389);
 	
-	//disaster
-	Area affectedArea = new Area(Arrays.asList(A1, B1, C1, D1, E1, F1), AreaType.Affected);
-	Area dangerousArea = new Area(Arrays.asList(A2, B2, C2, D2, E2, F2), AreaType.Dangerous);
+	Area affectedArea = new Area(Arrays.asList(new GPSCoordinates(40.0, 10.0), new GPSCoordinates(10.0, 40.0), 
+			  new GPSCoordinates(10.0, 60.0), new GPSCoordinates(30.0, 70.0),
+			  new GPSCoordinates(40.0, 50.0), new GPSCoordinates(60.0, 30.0)), AreaType.Affected);
+	Area dangerousArea1 = new Area(Arrays.asList(new GPSCoordinates(40.0,-10.0), new GPSCoordinates(0.0, 30.0),
+			  new GPSCoordinates(0.0, 60.0), new GPSCoordinates(30.0, 100.0), 
+			  new GPSCoordinates(70.0, 90.0), new GPSCoordinates(90.0, 40.0)), AreaType.Dangerous);
 	List<Area> affectedAreaList = new ArrayList<Area>();
 	List<Area> dangerousAreaList = new ArrayList<Area>();
 

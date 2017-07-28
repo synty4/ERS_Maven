@@ -47,8 +47,6 @@ public class DisasterTest {
 	List<Area> dangerousAreaList = new ArrayList<Area>();
 	Disaster floodNull = new Flood("void", false,null, null);
 
-	Disaster earthquake = new Earthquake("UCL earthquake", true, UCL, 10, 100);
-
 	@Test
 	public void disaster_isAcitveTest(){
 		Flood flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList);
@@ -94,21 +92,18 @@ public class DisasterTest {
 	@Test
 	public void disater_containsTest() {
 		Flood flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList);
+		Disaster earthquake = new Earthquake("UCL earthquake", true, UCL, 10, 100);
 		
 		assertFalse("pos (30.0, 30.0) should be not the affected flooded zone", flood.contains(new GPSCoordinates(30.0, 30.0)));
-		/*
+		
+		//add an affected area
+		flood.addAffectedArea(affectedArea);
+		
 		assertTrue("pos (50.0, 30.0) should be in the affected flooded zone", flood.contains(new GPSCoordinates(50.0, 30.0)));
-		//Z
 		assertTrue("pos (20.0, 60.0) should be in the affected flooded zone", flood.contains(new GPSCoordinates(20.0, 60.0)));
-
-		//I
 		assertFalse("pos (40.0, 80.0) should not be in the affected flooded zone", flood.contains(new GPSCoordinates(40.0, 80.0)));
-		//J
-		assertFalse("pos (10.0, 10.0) should not be in the affected flooded zone", flood.contains(new GPSCoordinates(10.0, 10.0)));
-		//assertTrue("pos (51.2149331, 3.95192671) should be in the affected earthquake zone", earthquake.contains_affectedArea(new GPSCoordinates(51.2149331, 3.95192671)));
-		//assertTrue("pos (50.73462606, 50.73462606) should be in the affected earthquake zone", earthquake.contains_affectedArea(new GPSCoordinates(50.73462606, 50.73462606)));
-		*/
+		assertTrue("pos (10.0, 10.0) should not be in the affected flooded zone", flood.contains(new GPSCoordinates(10.0, 10.0)));
+		assertTrue("pos (51.2149331, 3.95192671) should be in the affected earthquake zone", earthquake.contains(new GPSCoordinates(51.2149331, 3.95192671)));
+		assertTrue("pos (50.73462606, 50.73462606) should be in the affected earthquake zone", earthquake.contains(new GPSCoordinates(50.66272788, 4.59574396)));
 	}
-
-
 }

@@ -60,6 +60,7 @@ public class Flood extends Disaster {
 		}
         return false;
     }
+    
     /**
      * check if pos is in the convex area
      * @param pos
@@ -79,6 +80,8 @@ public class Flood extends Disaster {
         }
     	return result;
     }
+    
+    
     
     @Override
 	public String toString() {	

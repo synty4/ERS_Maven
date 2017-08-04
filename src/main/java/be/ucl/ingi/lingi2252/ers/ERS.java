@@ -47,32 +47,37 @@ public class ERS {
 	 * @return safePlaces
 	 */
 	public List<SafePlace> getSafePlaces(){
+		//check if the list is empty 
+		if(safePlaces.isEmpty()){
+			return null;
+		}
 		return safePlaces;
 	}
+	
+	/**
+	 * get the distance between the user's current position and a given SafePlace
+	 * @param user
+	 * @param safePlace
+	 * @return distance safe place and current position 
+	 * */
+	public Double getDistanceToSafePlace(User user, SafePlace safePlace){
+		double userCurrentLat   = user.getUserCurrentPosition().getLatitude();
+		double userCurrentLong  = user.getUserCurrentPosition().getLongitude();
+		double safePlaceLat		= safePlaces.get(0).getPlacePosition().getLatitude();
+		double safePlaceLong    = safePlaces.get(0).getPlacePosition().getLongitude();
+		return Location.distance(userCurrentLat, userCurrentLong, safePlaceLat, safePlaceLong);
+	}
+	
 	/**
 	 * get the closest safe place from the current position
 	 * @return closestSafePlace
 	 */
 	public SafePlace getClosestSafePlace(){
-		//check if the list is empty 
-		if(safePlaces.isEmpty()){
-			return null;
-		}
+		SafePlace closest = getSafePlaces().get(0);
+		double distance   = getDistanceToSafePlace(user, closest);
 		
-		SafePlace closest = safePlaces.get(0);
-		
-		double userCurrentLat = user.getUserCurrentPosition().getLatitude();
-		double userCurrentLong = user.getUserCurrentPosition().getLongitude();
-		double destLat = safePlaces.get(0).getPlacePosition().getLatitude();
-		double destLong = safePlaces.get(0).getPlacePosition().getLongitude();
-		
-		//get the distance
-		double distance = Location.distance(userCurrentLat, userCurrentLong, destLat, destLong);
-		
-		for(SafePlace safePlace : safePlaces){
-			destLat = safePlace.getPlacePosition().getLatitude();
-			destLong = safePlace.getPlacePosition().getLongitude();
-			double distance2 = Location.distance(userCurrentLat, userCurrentLong, destLat, destLong);
+		for(SafePlace safePlace : getSafePlaces()){
+			double distance2 = getDistanceToSafePlace(user, safePlace);
 			if(distance2 < distance){
 				distance = distance2;
 				closest = safePlace;
@@ -148,6 +153,7 @@ public class ERS {
 		}
 		return null;
 	}
+	
 	/**
 	 * get the user
 	 * @return user
@@ -156,7 +162,23 @@ public class ERS {
 		return user;
 	}
 	/**
-	 * this méthod display the path to the safe place
+	 * This method display directions to the safe place
+	 * @param safePlace
+	 */
+	public String guideToSafePlace(){
+		
+		SafePlace safePlace = getClosestSafePlace();
+		Double distance     = getDistanceToSafePlace(user, safePlace);
+		
+		return "Directions tosafe place"  
+				+"You are at"     + distance + "km from "
+				+"The nearest safe place is: " + safePlace.getPlaceName()
+				+"Latitude: "      + safePlace.getPlacePosition().getLatitude() 
+				+"Longitude: "     + safePlace.getPlacePosition().getLongitude();
+	}
+	
+	/**
+	 * this method display the path to the safe place
 	 * @param safePlace
 	 */
 	public void displayPathToSafePlace(SafePlace safePlace){
@@ -166,7 +188,7 @@ public class ERS {
 	 * this method display all the no safe area
 	 * @param disasters
 	 */
-	public void displayNoSafeArea(List<Disaster> disasters){
+	public void displayNotSafeArea(List<Disaster> disasters){
 		//TODO
 	}
 	/**

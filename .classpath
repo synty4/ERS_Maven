@@ -23,5 +23,14 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/cmudict04.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/cmulex.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/en_us.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/freetts.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/mbrola.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

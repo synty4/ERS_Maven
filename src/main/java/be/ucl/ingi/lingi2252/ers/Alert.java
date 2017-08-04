@@ -12,6 +12,7 @@ public class Alert extends TimerTask{
 	private ERS ers;
 
 	public Alert(ERS ers, Timer timer) {
+		
 		super();
 		this.ers = ers; 
 		this.timer = timer;

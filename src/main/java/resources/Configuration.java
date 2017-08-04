@@ -26,18 +26,17 @@ public class Configuration {
 		//prop.setProperty("DisasterType", "none");
 		
 		prop.setProperty("Map", "current_position");
-		
-	/*  prop.setProperty("Map", "dangerous_zones");
+		prop.setProperty("Map", "dangerous_zones");
 		prop.setProperty("Map", "affected_zones");
 		prop.setProperty("Map", "safe_places");
-	*/	
+		
 		prop.setProperty("DetectDangerousZones", "General_information");
-	/*	prop.setProperty("DetectDangerousZones", "DisplayNearestSafePlaces");
+	    prop.setProperty("DetectDangerousZones", "DisplayNearestSafePlaces");
 		prop.setProperty("DisplayNearestSafePlaces", "As_text");
 		prop.setProperty("DisplayNearestSafePlaces", "On_map");
 		prop.setProperty("DetectDangerousZones", "FloodInstructions");
 		prop.setProperty("DetectDangerousZones", "EarthquakeInstructions");
-	*/	
+		
 
 		// save properties to project root folder
 		prop.store(output, null);

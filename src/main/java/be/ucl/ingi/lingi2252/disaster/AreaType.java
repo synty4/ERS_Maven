@@ -1,4 +1,4 @@
-package be.ucl.ingi.lingi2252.ers;
+package be.ucl.ingi.lingi2252.disaster;
 
 public enum AreaType {
 	Affected,

@@ -1,22 +1,24 @@
-package be.ucl.ingi.lingi2252.ers;
-/*
- * This class implements a non specific Instruction
- * such as Call  an Emergency number
+package be.ucl.ingi.lingi2252.instruction;
+/**
+ * This class represents an Instruction
+ * @author Syntyche Shimbi & Zigabe Jos
+ *
  */
-
 
 public class Instruction {
 	String details;
+	String type = null;
 	
 	/**
 	 * Constructor
 	 * @param details
+	 * @param type: general, flood or earthquake
 	 * 
 	 * **/
 	public Instruction(String d) {
 		details = d;
 	}
-    
+	
 	/**
 	 * set instruction content
 	 * @param  details

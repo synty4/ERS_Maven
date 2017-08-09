@@ -32,5 +32,6 @@
 	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/freetts.jar"/>
 	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/freetts-jsapi10.jar"/>
 	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/lib/mbrola.jar"/>
+	<classpathentry kind="lib" path="C:/Users/synty4/Documents/2 em session/Mesure et Maintenance/Projets/freetts-1.2/mbrola/mbrola.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

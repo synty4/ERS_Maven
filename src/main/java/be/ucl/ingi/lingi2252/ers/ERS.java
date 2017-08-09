@@ -1,7 +1,13 @@
 package be.ucl.ingi.lingi2252.ers;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+
+import be.ucl.ingi.lingi2252.disaster.*;
+import be.ucl.ingi.lingi2252.disaster.Disaster;
+import be.ucl.ingi.lingi2252.instruction.Instruction;
 import be.ucl.ingi.lingi2252.utils.*;
 
 /**
@@ -10,24 +16,40 @@ import be.ucl.ingi.lingi2252.utils.*;
  *
  */
 public class ERS {
-	private List<Disaster> disasters;
+	
+	private List<ConcreteDisaster> disasters;
 	private List<SafePlace> safePlaces;
-	private List<Instruction> instructions;
+	private List<Instruction> generalInstructions;
 	private User user;
 	
-	public ERS(List<Disaster> disasters, List<SafePlace> safePlaces, 
-			List<Instruction> instructions, User user) {
+	public void clear() {
+		this.disasters    =  null;
+		this.safePlaces   = null;
+		this.generalInstructions = null;
+		this.user		  = null;
+	}
+	public ERS(List<ConcreteDisaster> disasters, List<SafePlace> safePlaces, 
+			List<Instruction> generalInstructions, User user) {
 		this.disasters = disasters;
 		this.safePlaces = safePlaces;
-		this.instructions = instructions;
+		this.generalInstructions = generalInstructions;
 		this.user = user;
 	}
 	public ERS() {
         this.disasters = new ArrayList<>();
         this.safePlaces = new ArrayList<>();
-        this.instructions = new ArrayList<>();
+        this.generalInstructions = new ArrayList<>();
         this.user = new User();
     }
+	
+	/**
+	 * get voice from text
+	 * @param text
+	 * */
+	public void getVoice(String text) {
+		TextToSpeechConverter voice = new TextToSpeechConverter(text);
+		voice.speak();
+	}
 	/**
 	 * add a safe place to the safe place list
 	 * @param safePlace
@@ -47,7 +69,7 @@ public class ERS {
 	 * @return safePlaces
 	 */
 	public List<SafePlace> getSafePlaces(){
-		//check if the list is empty 
+		
 		if(safePlaces.isEmpty()){
 			return null;
 		}
@@ -61,11 +83,7 @@ public class ERS {
 	 * @return distance safe place and current position 
 	 * */
 	public Double getDistanceToSafePlace(User user, SafePlace safePlace){
-		double userCurrentLat   = user.getUserCurrentPosition().getLatitude();
-		double userCurrentLong  = user.getUserCurrentPosition().getLongitude();
-		double safePlaceLat		= safePlaces.get(0).getPlacePosition().getLatitude();
-		double safePlaceLong    = safePlaces.get(0).getPlacePosition().getLongitude();
-		return Location.distance(userCurrentLat, userCurrentLong, safePlaceLat, safePlaceLong);
+		return Haversine.getDistance(user.getUserCurrentPosition(),  safePlace.getPlacePosition());
 	}
 	
 	/**
@@ -89,65 +107,70 @@ public class ERS {
 	/**
 	 * add instruction to the instruction list
 	 * @param instruction
+	 * 		  concreteDisaster ("null" for generic generalInstructions)
 	 */
-	public void addInstruction(Instruction instruction){
-		instructions.add(instruction);
+	public void addGeneralInstruction(Instruction instruction){
+	
+			generalInstructions.add(instruction);
+		
 	}
 	/**
 	 * remove instruction from the instruction list
 	 * @param instruction
 	 */
-	public void removeInstruction(Instruction instruction){
-		instructions.remove(instruction);
+	public void removeGeneralInstruction(Instruction instruction){
+		generalInstructions.remove(instruction);
 	}
 	/**
 	 * get all instruction
 	 * @return instruction
 	 */
-	public List<Instruction> getInstructions(){
-		return instructions;
+	public List<Instruction> getGeneralInstructions(){
+		return generalInstructions;
 	}
 	/**
-	 * display all the instructions
+	 * display all the generalInstructions
 	 * @return s
 	 */
-	public String displayInstructions(){
-		String s = "Instructions:\n";
-		for(Instruction instruction : instructions){
-			s += "- " + instruction.toString() + "\n"; 
+	public String displayGeneralInstructions(){
+		String s = " ";
+		for(Instruction instruction : generalInstructions){
+			s += instruction.toString() + "\n"; 
 		}
 		return s;
 	}
+		
 	/**
-	 * add disaster to the disaster list
-	 * @param disaster
+	 * add ConcreteDisaster to the disasters list
+	 * @param ConcreteDisaster
 	 */
-	public void addDisaster(Disaster disaster){
-		disasters.add(disaster);
+	public void addDisaster(ConcreteDisaster ConcreteDisaster){
+		disasters.add(ConcreteDisaster);
 	}
 	/**
-	 * remove disaster from the disaster list
-	 * @param disaster
+	 * remove ConcreteDisaster from the disasters list
+	 * @param ConcreteDisaster
 	 */
-	public void removeDisaster(Disaster disaster){
+	public void removeDisaster(ConcreteDisaster disaster){
 		disasters.remove(disaster);
 	}
 	/**
 	 * get all the disaster
 	 * @return disasters
 	 */
-	public List<Disaster> getDisasters(){
+	public List<ConcreteDisaster> getDisasters(){
 		return disasters;
 	}
 	/**
-	 * this method check if the user is in safe area
+	 * this method check if the user is in unsafe area
 	 * @param position
-	 * @return true if he is in a safe area otherwise false
+	 * @return returns null if he is in a safe place
+	 * 			       a disaster otherwise 
 	 */
-	public Disaster isInSafe(GPSCoordinates position){
-		//boolean safe = true;
-		for(Disaster disaster : disasters){
-			if(disaster.contains(user.getUserCurrentPosition())){
+	public ConcreteDisaster isUnSafe(GPSCoordinates position){
+
+		for(ConcreteDisaster disaster : disasters){
+			if( disaster.contains(user.getUserCurrentPosition())){
 				return disaster;
 			}
 		}
@@ -161,6 +184,19 @@ public class ERS {
 	public User getUser(){
 		return user;
 	}
+	
+	/**
+	 * 	@autor:  Louis Wasserman
+	 *  @source: https://stackoverflow.com/questions/2808535/round-a-double-to-2-decimal-places
+	 * **/
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+	
 	/**
 	 * This method display directions to the safe place
 	 * @param safePlace
@@ -170,11 +206,11 @@ public class ERS {
 		SafePlace safePlace = getClosestSafePlace();
 		Double distance     = getDistanceToSafePlace(user, safePlace);
 		
-		return "Directions tosafe place"  
-				+"You are at"     + distance + "km from "
-				+"The nearest safe place is: " + safePlace.getPlaceName()
-				+"Latitude: "      + safePlace.getPlacePosition().getLatitude() 
-				+"Longitude: "     + safePlace.getPlacePosition().getLongitude();
+		return "Directions to the nearest safe place"  
+				+"\n The nearest safe place is: " + safePlace.getPlaceName()
+				+"\n Latitude:  "        		  + safePlace.getPlacePosition().getLatitude() 
+				+"\n Longitude: "       		  + safePlace.getPlacePosition().getLongitude()
+				+"\n You are "    				  + round( distance, 2) + " km away from this location ";
 	}
 	
 	/**
@@ -188,43 +224,50 @@ public class ERS {
 	 * this method display all the no safe area
 	 * @param disasters
 	 */
-	public void displayNotSafeArea(List<Disaster> disasters){
+	public List<GPSCoordinates> displayNotSafeArea(List<ConcreteDisaster> disasters){
 		//TODO
+		return null;
 	}
 	/**
 	 * this method count all active disasters
 	 * @return count
 	 */
-	public int getActiveDisastersCount(){
-		int count = 0; //by default
-		for(Disaster disaster : disasters){
-			if(disaster.isActive()){
-				++count;
+	public int countDisasters(){
+		int c = 0; 
+		for(ConcreteDisaster d : disasters){
+			if(d.isActive()){
+				++c;
 			}
 		}	
-		return count;
+		return c;
 	}
-	
+	public String toStringDisasters() {
+		String str = "";
+		for (ConcreteDisaster disaster  : disasters) {
+	           str +=disaster.toString() + "\n";
+	        }
+		return str;
+	}
+	public String toStringSafePlaces(){
+		String str = "";
+		for (SafePlace safePlace : safePlaces) {
+            str += safePlace.toString()+"\n";
+        }
+		return str;
+	}
+
 	@Override
     public String toString() {
-        String s = "Current active disaster(s):\n- " + getActiveDisastersCount() 
-        			+ "\nUser Position:\n- " + user.getUserCurrentPosition() 
-        			+ "\nDisasters:\n";
-        for (Disaster disaster  : disasters) {
-            s += "- " + disaster.toString() + "\n";
-        }
-        s = s.replaceAll(", $", "");
-        s+= "SafePlaces:\n";
-        for (SafePlace safePlace : safePlaces) {
-            s += "- " + safePlace.toString()+"\n";
-        }
-        s = s.replaceAll(", $", "");
-        s+= "Instructions:\n";
-        for (Instruction instruction : instructions) {
-            s += "- " + instruction.toString()+"\n";
-        }  
-        s = s.replaceAll(", $", "");
-        return s;
+      return "Occuring Disaster(s): "  + countDisasters() 
+    		+"\n------------------"
+    		+"\nUser Position:" + user.getUserCurrentPosition() 
+            +"\n-------------"	 
+            + "\nDisasters:"    
+            + "\n----------"		
+            +"\n" + toStringDisasters()
+            + "\nSafe Places: "	 
+            +"\n-----------"  
+            +"\n" + toStringSafePlaces();
     }
 
 }

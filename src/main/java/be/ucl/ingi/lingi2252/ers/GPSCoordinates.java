@@ -1,4 +1,11 @@
+/**
+ * This class represent GPS Coordinates
+ * @author Syntyche Shimbi & Zigabe Jos
+ *
+ */
+
 package be.ucl.ingi.lingi2252.ers;
+
 public class GPSCoordinates {
 	
 	private Double latitude;

@@ -1,6 +1,6 @@
 package be.ucl.ingi.lingi2252.ers;
 /**
- * This class represent a safe place
+ * This class represents a Safe Place
  * @author Syntyche Shimbi & Zigabe Jos
  *
  */
@@ -61,7 +61,9 @@ public class SafePlace {
 	@Override
 	public String toString() {
 		
-		String s = "[Name: " + this.getPlaceName() + ", Type: " + this.placeType + ", Postion: " + this.placePosition + "]";
+		String s = "Name: "       + this.getPlaceName() 
+		         + "\n Type: "    + this.placeType 
+		         + "\n Postion: " + this.placePosition ;
 		return s;
 
 	}

@@ -2,32 +2,34 @@ package be.ucl.ingi.lingi2252.ers;
 
 import java.util.List;
 
+import be.ucl.ingi.lingi2252.disaster.AreaType;
+
 /**
  * This class represent a convex area 
  * @author Syntyche Shimbi & Zigabe Jos
  *
  */
 public class Area {
-	private List<GPSCoordinates> convexArea;
+	private List<GPSCoordinates> coordinates;
 	private AreaType type;
 	
 	public Area(List<GPSCoordinates> area, AreaType type){
-		this.convexArea = area;
+		this.coordinates = area;
 		this.type = type;
 	}
 	/**
 	 * get convex area
-	 * @return convexArea
+	 * @return coordinates
 	 */
 	public List<GPSCoordinates> getConvexArea(){
-		return convexArea;
+		return coordinates;
 	}
 	/**
 	 * set convex area
 	 * @param area
 	 */
 	public void setConvexArea(List<GPSCoordinates> area){
-		convexArea = area;
+		coordinates = area;
 	}
 	/**
 	 * get area type

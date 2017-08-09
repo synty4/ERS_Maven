@@ -10,6 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+
+import be.ucl.ingi.lingi2252.disaster.AreaType;
+import be.ucl.ingi.lingi2252.disaster.Flood;
+import be.ucl.ingi.lingi2252.instruction.Instruction;
 ;
 
 /**
@@ -27,10 +31,11 @@ public class FloodTest {
 	Area dangerousArea2 = new Area(Arrays.asList(new GPSCoordinates(40.0,-20.0), new GPSCoordinates(-10.0, 30.0), 
 											  new GPSCoordinates(-10.0, 60.0), new GPSCoordinates(30.0, 110.0), 
 											  new GPSCoordinates(70.0, 100.0), new GPSCoordinates(100.0, 40.0)), AreaType.Dangerous);
-		
+	
+	List <Instruction> floodList = Arrays.asList(new Instruction("Move immediately to higher ground or stay on high ground.\n"));	
 	List<Area> affectedAreaList = new ArrayList<Area>();
 	List<Area> dangerousAreaList = new ArrayList<Area>();
-	Flood flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList);
+	Flood flood = new Flood("Haute Loire flood", true, affectedAreaList, dangerousAreaList, floodList);
 
 	@Test
 	public void getDangerousAreaListTest(){

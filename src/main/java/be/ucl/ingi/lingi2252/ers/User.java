@@ -10,12 +10,19 @@ public class User {
 	private GPSCoordinates userPosition;
 	
 	public User(String name){
+		
 		this.userName = name;
 	}
-	public User(){
+	/*public User(String userName, GPSCoordinates userPosition){
+		this.userName     = userName;
+		this.userPosition = userPosition;
+	}
+	*/
+	 public User(){
 		this.userName = "John Doe";
 		this.userPosition = new GPSCoordinates(60.0,6.0);
 	}
+	 
 	
 	/**
 	 * set the name of the user
